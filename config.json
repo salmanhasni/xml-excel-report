@@ -1,6 +1,6 @@
 {
   "OutputFolderName": "Excel-Files/",
-  "inputFolderName": "/root/workspace/Constellix-Automation/build/test-results",
+  "inputFolderName": "/root/workspace/Constellix-Selenium/build/test-results",
   "sheet": {"name": "Checklist", "totalCols": 5 , "totalRows": 507},
   "startingRow": 1,
   "sheetTitle": "CNSDNS Regression Checklist",
