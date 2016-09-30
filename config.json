@@ -1,0 +1,28 @@
+{
+  "OutputFolderName": "Excel-Files/",
+  "inputFolderName": "/home/salman/Automation/build/test-results",
+  "sheet": {"name": "Checklist", "totalCols": 5 , "totalRows": 507},
+  "startingRow": 1,
+  "sheetTitle": "CNSDNS Regression Checklist",
+  "textToRemoveRegex": "Test\\d+ ",
+  "sheetFields": [
+    {
+      "name": "S.No",
+      "width": 10
+    },
+    {
+      "name": "Functionality",
+      "width": 50
+    },
+    {
+      "name": "Automation Status",
+      "width":30
+    }
+  ],
+  "fontName": "Arial",
+  "color": {
+    "pass": "00cc33",
+    "fail": "cc0000",
+    "list": ["c3d69b", "82a6d1", "d99694", "b3a2c7", "558ed5", "ffff00", "0066cc", "9900ff", "ff3399", "ff00ff", "000080"]
+  }
+}
