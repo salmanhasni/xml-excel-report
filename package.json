@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "dependencies": {
     "msexcel-builder-colorfix": "0.0.3",
+    "nodemailer": "^2.6.4",
     "xml2json": "^0.10.0"
   }
 }

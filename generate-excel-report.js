@@ -1,5 +1,6 @@
 var excelBuilder = require('msexcel-builder-colorfix'),
     fs = require('fs'),
+    nodemailer = require('nodemailer'),
     parser = require('xml2json');
 
 const CONFIG = require('./config.json');
@@ -28,10 +29,14 @@ function generateMapping(CONFIG){
     addSuccessRate(sheet, xmlConclusion, {col:1,row:startingRow},{col:3,row:startingRow}, startingRow);
 
     workbook.save(function(error){
-        if (error)
+        if (error){
             workbook.cancel();
+        }
         else
+        {
             console.log('Mapping Successful');
+            attachAndSendReport(workbook.fpath + workbook.fname);
+        }
     });
 }
 
@@ -166,11 +171,32 @@ function addSuccessRate(sheet, xmlConclusion, from, to, startingRow){
 
     sheet.font(1, startingRow, {name:CONFIG.fontName,sz:'20',bold:'true'});
     sheet.height(startingRow, 40);
-    sheet.set(1, startingRow, "Success Rate: " + (passedTest/totalTest) * 100 + "%");
+    var successPercentage = (passedTest/totalTest) * 100;
+    sheet.set(1, startingRow, "Success Rate: " + successPercentage.toFixed(2) + "%");
     sheet.merge(from, to);
     sheet.align(1,startingRow, 'center');
 
     return startingRow;
+}
+
+function attachAndSendReport(path){
+    var nodemailer = require('nodemailer');
+
+    var transporter = nodemailer.createTransport('smtps://tiggee.test.email@gmail.com:tenpearls@smtp.gmail.com');
+
+    var mailOptions = {
+        from: '"Selenium Automation " <tiggee.test.email@gmail.com>', // sender address
+        to: 'salman.hasni@tenpearls.com', // list of receivers
+        subject: 'Regression Report', // Subject line
+        attachments: [ {path: path} ]
+    };
+
+    transporter.sendMail(mailOptions, function(error, info){
+        if(error){
+            return console.log(error);
+        }
+        console.log('Message sent: ' + info.response);
+    });
 }
 
 function shadeColor(color, percent) {
