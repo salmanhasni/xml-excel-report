@@ -24,5 +24,9 @@
     "pass": "00cc33",
     "fail": "cc0000",
     "list": ["c3d69b", "82a6d1", "d99694", "b3a2c7", "558ed5", "ffff00", "0066cc", "9900ff", "ff3399", "ff00ff", "000080"]
+  },
+  "emails": {
+    "to": ["salman.hasni@tenpearls.com"],
+    "subject": "Regression Report"
   }
 }

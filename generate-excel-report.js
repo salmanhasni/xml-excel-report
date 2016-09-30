@@ -35,7 +35,7 @@ function generateMapping(CONFIG){
         else
         {
             console.log('Mapping Successful');
-            attachAndSendReport(workbook.fpath + workbook.fname);
+            attachAndSendReport(CONFIG, workbook.fpath + workbook.fname);
         }
     });
 }
@@ -179,15 +179,15 @@ function addSuccessRate(sheet, xmlConclusion, from, to, startingRow){
     return startingRow;
 }
 
-function attachAndSendReport(path){
+function attachAndSendReport(CONFIG, path){
     var nodemailer = require('nodemailer');
 
     var transporter = nodemailer.createTransport('smtps://tiggee.test.email@gmail.com:tenpearls@smtp.gmail.com');
 
     var mailOptions = {
         from: '"Selenium Automation " <tiggee.test.email@gmail.com>', // sender address
-        to: 'salman.hasni@tenpearls.com', // list of receivers
-        subject: 'Regression Report', // Subject line
+        to: CONFIG.emails.to.join(", "), // list of receivers
+        subject: CONFIG.emails.subject, // Subject line
         attachments: [ {path: path} ]
     };
 

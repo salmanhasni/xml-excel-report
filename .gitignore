@@ -38,6 +38,3 @@ jspm_packages
 
 # IDE
 .idea/
-
-# Output Excel-Files
-Excel-Files/
